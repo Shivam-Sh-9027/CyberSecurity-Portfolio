@@ -31,6 +31,137 @@
       --chip: #f1f5f9;
       --shadow: 0 8px 24px rgba(2,6,23,.08);
     }
+
+    /* Responsive menu styles */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    width: 32px;
+    height: 28px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .menu-toggle span {
+    width: 100%;
+    height: 3px;
+    background: var(--text);
+    border-radius: 5px;
+    transition: 0.3s;
+  }
+
+  /* Navigation for small screens */
+  @media (max-width: 768px) {
+    .nav {
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+
+    /* Hide menu by default */
+    #navMenu {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      gap: 12px;
+      margin-top: 10px;
+      background: var(--card);
+      border-radius: 12px;
+      padding: 12px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    /* Show menu when active */
+    #navMenu.active {
+      display: flex;
+    }
+
+    /* Hamburger icon visible */
+    .menu-toggle {
+      display: flex;
+      margin-left: auto;
+    }
+
+    /* Make nav links take full width for touch comfort */
+    #navMenu a, #navMenu button {
+      text-align: left;
+      width: 100%;
+    }
+
+    /* Ensure theme toggle + hire me buttons look nice */
+    #navMenu .toggle, #navMenu .cta {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  /* ===== Mobile / Tablet Fixes ===== */
+@media (max-width: 900px) {
+  /* Force hero to single column */
+  .hero {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* Make each hero card full width and add spacing */
+  .hero-card {
+    width: 100%;
+    padding: 18px !important;
+    margin: 0;
+  }
+
+  /* Center text/buttons in the left hero card */
+  .hero-card:first-child {
+    text-align: left;            /* change to center if you prefer */
+  }
+  .hero-card:first-child .hero-actions {
+    justify-content: flex-start; /* change to center if you prefer */
+  }
+
+  /* Quick facts wrap better */
+  .quick-facts {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 8px;
+  }
+
+  /* Profile card: center everything and scale image */
+  .profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .profile-container img.profile-photo {
+    width: 160px !important;
+    height: 180px !important;
+    border-radius: 9999px !important; /* perfectly round */
+    object-fit: cover;
+  }
+
+  /* Buttons: easier taps on mobile */
+  .row a.cta, .row a.ghost, .hero-actions .cta, .hero-actions .ghost {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Section grids go single column */
+  .grid { grid-template-columns: 1fr !important; }
+  .card { grid-column: 1 / -1 !important; }
+
+  /* Header nav: avoid layout push */
+  header .nav { flex-wrap: nowrap; }
+}
+
+/* Slightly smaller phones */
+@media (max-width: 380px) {
+  h1 { font-size: 26px; line-height: 1.2; }
+  .subtitle { font-size: 14px; }
+  .fact { font-size: 13px; }
+}
+
     * { box-sizing: border-box }
     html, body { height: 100% }
     body {
@@ -74,6 +205,43 @@
         box-shadow: var(--shadow);
         margin-bottom: 16px;
         }
+
+        #navMenu {
+          transition: all 0.3s ease-in-out;
+          opacity: 0;
+          transform: translateY(-10px);
+          pointer-events: none;
+        }
+
+        #navMenu.active {
+          opacity: 1;
+          transform: translateY(0);
+          pointer-events: auto;
+        }
+
+        /* Ensure the menu is always visible on wider screens */
+@media (min-width: 769px) {
+  #navMenu {
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    margin-top: 0;
+    background: transparent;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  /* Hide hamburger icon on large screens */
+  .menu-toggle {
+    display: none !important;
+  }
+}
+
     .nav a { padding: 8px 12px; border-radius: 10px }
     .nav a:hover { background: color-mix(in oklab, var(--brand) 14%, transparent) }
     .cta {
@@ -146,10 +314,16 @@
   <header>
     <div class="container nav">
       <div class="brand">
-        <div class="logo">SS</div>
-        <div>Shivam Sharma <span class="muted" style="font-weight:600">(He/Him)</span></div>
+        <div class="logo">ss</div>
+        <div>Shivam Sharma <span class="muted" style="font-weight:600">(Shiv)</span></div>
       </div>
-      <nav class="row" aria-label="Primary">
+
+      <!-- Hamburger button -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="row" id="navMenu" aria-label="Primary">
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#certs">Certifications</a>
@@ -157,12 +331,16 @@
         <a href="#contact">Contact</a>
         <button class="toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle light/dark">
           <span>Dark Mode</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3A7 7 0 0 0 21 12.79z"/>
+          </svg>
         </button>
         <a class="cta" href="#contact">Hire Me</a>
       </nav>
     </div>
   </header>
+
 
   <main class="container">
     <!-- HERO -->
@@ -468,6 +646,13 @@
       setTheme(light ? 'dark' : 'light');
       document.getElementById('themeToggle').firstElementChild.textContent = light ? 'Dark Mode' : 'Light Mode';
     });
+
+  
+    // Mobile menu toggle
+    document.getElementById('menuToggle').addEventListener('click', () => {
+      document.getElementById('navMenu').classList.toggle('active');
+    });
+
 
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
