@@ -220,80 +220,80 @@
         }
 
         /* Ensure the menu is always visible on wider screens */
-@media (min-width: 769px) {
-  #navMenu {
-    display: flex !important;
-    flex-direction: row;
-    align-items: center;
-    gap: 16px;
-    margin-top: 0;
-    background: transparent;
-    border: none;
-    padding: 0;
-    box-shadow: none;
-    opacity: 1;
-    transform: none;
-    pointer-events: auto;
-  }
+        @media (min-width: 769px) {
+          #navMenu {
+            display: flex !important;
+            flex-direction: row;
+            align-items: center;
+            gap: 16px;
+            margin-top: 0;
+            background: transparent;
+            border: none;
+            padding: 0;
+            box-shadow: none;
+            opacity: 1;
+            transform: none;
+            pointer-events: auto;
+          }
 
-  /* Hide hamburger icon on large screens */
-  .menu-toggle {
-    display: none !important;
-  }
-}
+          /* Hide hamburger icon on large screens */
+          .menu-toggle {
+            display: none !important;
+          }
+        }
 
-    .nav a { padding: 8px 12px; border-radius: 10px }
-    .nav a:hover { background: color-mix(in oklab, var(--brand) 14%, transparent) }
-    .cta {
-      background: linear-gradient(135deg, var(--brand), var(--accent));
-      color: white; padding: 10px 14px; border-radius: 12px; font-weight: 700; border: none; cursor: pointer;
-      box-shadow: var(--shadow);
-    }
-    .ghost { border: 1px solid var(--border); background: transparent; color: var(--text); padding: 10px 14px; border-radius: 12px; font-weight: 600; cursor: pointer }
-    .toggle { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border); padding: 8px 10px; border-radius: 10px; cursor: pointer }
-    main { padding: 28px 0 80px }
+            .nav a { padding: 8px 12px; border-radius: 10px }
+            .nav a:hover { background: color-mix(in oklab, var(--brand) 14%, transparent) }
+            .cta {
+              background: linear-gradient(135deg, var(--brand), var(--accent));
+              color: white; padding: 10px 14px; border-radius: 12px; font-weight: 700; border: none; cursor: pointer;
+              box-shadow: var(--shadow);
+            }
+            .ghost { border: 1px solid var(--border); background: transparent; color: var(--text); padding: 10px 14px; border-radius: 12px; font-weight: 600; cursor: pointer }
+            .toggle { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border); padding: 8px 10px; border-radius: 10px; cursor: pointer }
+            main { padding: 28px 0 80px }
 
-    /* Hero */
-    .hero { display: grid; grid-template-columns: 1.2fr .8fr; gap: 32px; align-items: center; padding: 36px 0 }
-    .hero-card {
-      background: linear-gradient(180deg, color-mix(in oklab, var(--card) 92%, transparent), var(--card));
-      border: 1px solid var(--border); border-radius: 20px; padding: 24px; box-shadow: var(--shadow);
-    }
-    .eyebrow { color: var(--muted); font-weight: 600; letter-spacing: .2em; text-transform: uppercase; font-size: 12px }
-    h1 { font-size: clamp(28px, 5vw, 46px); line-height: 1.1; margin: 8px 0 12px }
-    .subtitle { font-size: clamp(14px, 2vw, 18px); color: var(--muted) }
-    .hero-actions { display: flex; gap: 12px; margin-top: 18px; flex-wrap: wrap }
-    .quick-facts { display: grid; gap: 10px; margin-top: 18px; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) }
-    .fact { border: 1px solid var(--border); background: var(--chip); padding: 10px 12px; border-radius: 12px; font-size: 14px; color: var(--muted) }
+            /* Hero */
+            .hero { display: grid; grid-template-columns: 1.2fr .8fr; gap: 32px; align-items: center; padding: 36px 0 }
+            .hero-card {
+              background: linear-gradient(180deg, color-mix(in oklab, var(--card) 92%, transparent), var(--card));
+              border: 1px solid var(--border); border-radius: 20px; padding: 24px; box-shadow: var(--shadow);
+            }
+            .eyebrow { color: var(--muted); font-weight: 600; letter-spacing: .2em; text-transform: uppercase; font-size: 12px }
+            h1 { font-size: clamp(28px, 5vw, 46px); line-height: 1.1; margin: 8px 0 12px }
+            .subtitle { font-size: clamp(14px, 2vw, 18px); color: var(--muted) }
+            .hero-actions { display: flex; gap: 12px; margin-top: 18px; flex-wrap: wrap }
+            .quick-facts { display: grid; gap: 10px; margin-top: 18px; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) }
+            .fact { border: 1px solid var(--border); background: var(--chip); padding: 10px 12px; border-radius: 12px; font-size: 14px; color: var(--muted) }
 
-    /* Section */
-    section { margin-top: 54px }
-    .section-title { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 18px }
-    .section-title h2 { font-size: 24px; margin: 0 }
-    .section-title p { color: var(--muted); font-size: 14px }
+            /* Section */
+            section { margin-top: 54px }
+            .section-title { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 18px }
+            .section-title h2 { font-size: 24px; margin: 0 }
+            .section-title p { color: var(--muted); font-size: 14px }
 
-    /* Cards grid */
-    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px }
-    .card { grid-column: span 12; background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 16px; box-shadow: var(--shadow) }
-    @media (min-width: 720px) { .card.s6 { grid-column: span 6 } .card.s4 { grid-column: span 4 } .card.s8 { grid-column: span 8 } }
+            /* Cards grid */
+            .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px }
+            .card { grid-column: span 12; background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 16px; box-shadow: var(--shadow) }
+            @media (min-width: 720px) { .card.s6 { grid-column: span 6 } .card.s4 { grid-column: span 4 } .card.s8 { grid-column: span 8 } }
 
-    /* Chips */
-    .chips { display: flex; flex-wrap: wrap; gap: 8px }
-    .chip { background: var(--chip); border: 1px solid var(--border); padding: 6px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; color: var(--muted) }
+            /* Chips */
+            .chips { display: flex; flex-wrap: wrap; gap: 8px }
+            .chip { background: var(--chip); border: 1px solid var(--border); padding: 6px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; color: var(--muted) }
 
-    /* Timeline */
-    .timeline { position: relative; padding-left: 22px }
-    .timeline:before { content: ""; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--border) }
-    .tl-item { position: relative; margin: 14px 0; padding-left: 8px }
-    .tl-item:before { content: ""; position: absolute; left: -6px; top: 8px; width: 12px; height: 12px; background: linear-gradient(135deg, var(--brand), var(--accent)); border-radius: 50%; box-shadow: 0 0 0 4px color-mix(in oklab, var(--brand) 12%, transparent) }
+            /* Timeline */
+            .timeline { position: relative; padding-left: 22px }
+            .timeline:before { content: ""; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--border) }
+            .tl-item { position: relative; margin: 14px 0; padding-left: 8px }
+            .tl-item:before { content: ""; position: absolute; left: -6px; top: 8px; width: 12px; height: 12px; background: linear-gradient(135deg, var(--brand), var(--accent)); border-radius: 50%; box-shadow: 0 0 0 4px color-mix(in oklab, var(--brand) 12%, transparent) }
 
-    /* Footer */
-    footer { margin-top: 60px; padding: 22px 0; border-top: 1px solid var(--border); color: var(--muted) }
+            /* Footer */
+            footer { margin-top: 60px; padding: 22px 0; border-top: 1px solid var(--border); color: var(--muted) }
 
-    /* Utilities */
-    .row { display: flex; gap: 10px; flex-wrap: wrap }
-    .muted { color: var(--muted) }
-    .kbd { padding: 4px 8px; border: 1px solid var(--border); background: var(--chip); border-radius: 8px; font-weight: 700; font-size: 12px }
+            /* Utilities */
+            .row { display: flex; gap: 10px; flex-wrap: wrap }
+            .muted { color: var(--muted) }
+            .kbd { padding: 4px 8px; border: 1px solid var(--border); background: var(--chip); border-radius: 8px; font-weight: 700; font-size: 12px }
   </style>
   <script>
     // Theme persistence
@@ -348,7 +348,7 @@
       <div class="hero-card">
         <div class="eyebrow">SOC Cybersecurity Enthusiast</div>
         <h1>Hi, I'm <span style="background:linear-gradient(90deg,var(--brand),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent">Shivam (Shiv) Sharma</span>.</h1>
-        <p class="subtitle">Student at Greater Noida Institute of Technology (GNIOT). I love blue team ops, log analysis, and turning alerts into insights. Comfortable with <strong>Linux (Kali)</strong>, <strong>Python</strong>, <strong>C/C++/Java</strong>, <strong>MySQL</strong>, <strong>Flask</strong>, and hands-on with <strong>Fortinet</strong> stack, SIEM/SOAR basics, and secure app development.</p>
+        <p class="subtitle">Student at Greater Noida Institute of Technology (GNIOT). I love blue team ops, log analysis, and turning alerts into insights. Comfortable with <strong>Linux (Kali)</strong>, <strong>Python</strong>,<strong>MySQL</strong>, <strong>Flask</strong>, and hands-on with <strong>Fortinet</strong> stack, SIEM/SOAR basics, and secure app development.</p>
         <div class="hero-actions">
           <a class="cta" href="#projects">See Projects</a>
           <a class="ghost" href="#certs">View Certifications</a>
@@ -392,7 +392,7 @@
           <h3 style="margin-top:0">Highlights</h3>
           <ul>
             <li>GNIOT student (Engineering)</li>
-            <li>Intermediate Python, Core Java</li>
+            <li>Intermediate Python</li>
             <li>Kali Linux, Linux firewalls</li>
             <li>Flask, MySQL</li>
             <li>Fortinet FCF + FCA (2025)</li>
@@ -431,11 +431,9 @@
           <h3 style="margin:0 0 8px">Programming & Tools</h3>
           <div class="chips">
             <span class="chip">Python</span>
-            <span class="chip">C</span>
-            <span class="chip">C++</span>
-            <span class="chip">Java</span>
             <span class="chip">JavaScript</span>
             <span class="chip">Flask</span>
+            <span class="chip">RESTAPI</span>
             <span class="chip">MySQL</span>
             <span class="chip">Git</span>
             <span class="chip">GitHub</span>
@@ -551,50 +549,61 @@
       </div>
     </section>
 
-    <!-- PROJECTS (sample placeholders) -->
-    <section id="projects">
+    <section id="certs">
       <div class="section-title">
-        <h2>Projects</h2>
-        <p>Hands‑on blue‑team and app builds</p>
+        <h2>Badges</h2>
+        <!-- <p>Fortinet and foundational badges</p> -->
       </div>
       <div class="grid">
         <article class="card s6">
-          <h3 style="margin:0">Mini SOC Lab (Home)</h3>
-          <p class="muted">Spun up a home lab with Linux (Kali), a SIEM trial, and test logs to practice alert triage, correlation, and incident notes.</p>
-          <div class="chips">
-            <span class="chip">Linux</span>
-            <span class="chip">SIEM</span>
-            <span class="chip">Syslog</span>
-            <span class="chip">Detection Rules</span>
-          </div>
+          <!-- <h3 style="margin:0">Fortinet Certified Associate (FCA) — Cybersecurity</h3> -->
+          <h3 style="margin-top:16px">TryHackMe Badges</h3>
+          <iframe 
+            src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=5698008" 
+            style="border:none; width:100%; height:200px;">
+          </iframe>
         </article>
+    </section>
+
+        <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-title">
+        <h2>Projects</h2>
+        <p>Hands-on security, AI, and application development</p>
+      </div>
+
+      <div class="grid">
+
+        <!-- Temporal Clustering -->
         <article class="card s6">
-          <h3 style="margin:0">Flask Auth Demo</h3>
-          <p class="muted">Simple Flask app with user authentication, role‑based access, and audit logging. Built with MySQL and GitHub CI.</p>
+          <h3 style="margin:0">Temporal Clustering of Cybersecurity Incidents</h3>
+
+          <!-- GITHUB HOSTED SCREENSHOT -->
+          <img 
+            src="https://raw.githubusercontent.com/Shivam-Sh-9027/Temperal_clustering_of_cyber_security_incidents/main/Screenshot_2025-12-03_00_50_08.png" 
+            alt="Temporal Clustering Dashboard Screenshot"
+            style="width:100%; border-radius:12px; margin:12px 0; border:1px solid var(--border); box-shadow:var(--shadow);"
+          />
+
+          <p class="muted">
+            A data-driven project that clusters cyber attacks based on time to identify high-risk intervals. 
+            Includes Flask backend, visualization dashboard, K-Means clustering, and predictive analysis.
+          </p>
+
           <div class="chips">
-            <span class="chip">Flask</span>
-            <span class="chip">MySQL</span>
-            <span class="chip">Auth</span>
-            <span class="chip">Audit Logs</span>
-          </div>
-        </article>
-        <article class="card s6">
-          <h3 style="margin:0">OpenCV Attendance</h3>
-          <p class="muted">Facial recognition attendance prototype with real‑time rendering and basic anti‑spoofing checks.</p>
-          <div class="chips">
-            <span class="chip">OpenCV</span>
             <span class="chip">Python</span>
-            <span class="chip">Real‑time</span>
+            <span class="chip">Flask</span>
+            <span class="chip">Machine Learning</span>
+            <span class="chip">K-Means</span>
+            <span class="chip">Cybersecurity</span>
           </div>
-        </article>
-        <article class="card s6">
-          <h3 style="margin:0">Socket.io Chat</h3>
-          <p class="muted">WebSocket based chat with basic moderation and message retention policy to explore security controls.</p>
-          <div class="chips">
-            <span class="chip">JavaScript</span>
-            <span class="chip">Socket.io</span>
-            <span class="chip">Security</span>
-          </div>
+
+          <a class="cta" 
+            href="https://github.com/Shivam-Sh-9027/Temperal_clustering_of_cyber_security_incidents"
+            target="_blank" 
+            style="margin-top:10px; display:inline-block;">
+            GitHub Repo
+          </a>
         </article>
       </div>
     </section>
@@ -608,9 +617,9 @@
       <div class="grid">
         <div class="card s8">
           <p><strong>Email:</strong> <a href="mailto:Sharmashiv7055@gmail.com">Sharmashiv7055@gmail.com</a></p>
-          <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/shivam-sharma-523080363" target="_blank" rel="noreferrer">/in/shivam-sharma-523080363</a></p>
+          <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/shivam9027" target="_blank" rel="noreferrer">/in/shivam9027</a></p>
           <p><strong>GitHub:</strong> <a href="https://github.com/Shivam-Sh-9027" target="_blank" rel="noreferrer">github.com/Shivam-Sh-9027</a></p>
-          <p class="muted">Replace with your actual contact details and enable the form below if you want direct submissions.</p>
+          <!-- <p class="muted">Replace with your actual contact details and enable the form below if you want direct submissions.</p> -->
           <details style="margin-top:8px">
             <summary><strong>Optional contact form (static demo)</strong></summary>
             <form onsubmit="event.preventDefault(); alert('Thanks! I will get back to you.');" style="margin-top:10px">
@@ -692,7 +701,7 @@
     "jobTitle": "SOC Cybersecurity Enthusiast",
     "affiliation": "Greater Noida Institute of Technology (GNIOT)",
     "knowsAbout": [
-      "SIEM","SOAR","Fortinet","Firewall","Linux","Kali","Python","C","C++","Java","Flask","MySQL","OpenCV","NLP","Git","GitHub","WebSocket","Socket.io"
+      "SIEM","SOAR","Fortinet","Firewall","Linux","Kali","Python","Flask","MySQL","OpenCV","NLP","Git","GitHub","WebSocket","Socket.io"
     ],
     "url": "",
     "email": "mailto:Sharmashiv7055@gmail.com"
@@ -700,5 +709,4 @@
   </script>
 </body>
 </html>
-
 
