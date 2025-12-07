@@ -31,6 +31,137 @@
       --chip: #f1f5f9;
       --shadow: 0 8px 24px rgba(2,6,23,.08);
     }
+
+    /* Responsive menu styles */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    width: 32px;
+    height: 28px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .menu-toggle span {
+    width: 100%;
+    height: 3px;
+    background: var(--text);
+    border-radius: 5px;
+    transition: 0.3s;
+  }
+
+  /* Navigation for small screens */
+  @media (max-width: 768px) {
+    .nav {
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+
+    /* Hide menu by default */
+    #navMenu {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      gap: 12px;
+      margin-top: 10px;
+      background: var(--card);
+      border-radius: 12px;
+      padding: 12px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    /* Show menu when active */
+    #navMenu.active {
+      display: flex;
+    }
+
+    /* Hamburger icon visible */
+    .menu-toggle {
+      display: flex;
+      margin-left: auto;
+    }
+
+    /* Make nav links take full width for touch comfort */
+    #navMenu a, #navMenu button {
+      text-align: left;
+      width: 100%;
+    }
+
+    /* Ensure theme toggle + hire me buttons look nice */
+    #navMenu .toggle, #navMenu .cta {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  /* ===== Mobile / Tablet Fixes ===== */
+@media (max-width: 900px) {
+  /* Force hero to single column */
+  .hero {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* Make each hero card full width and add spacing */
+  .hero-card {
+    width: 100%;
+    padding: 18px !important;
+    margin: 0;
+  }
+
+  /* Center text/buttons in the left hero card */
+  .hero-card:first-child {
+    text-align: left;            /* change to center if you prefer */
+  }
+  .hero-card:first-child .hero-actions {
+    justify-content: flex-start; /* change to center if you prefer */
+  }
+
+  /* Quick facts wrap better */
+  .quick-facts {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 8px;
+  }
+
+  /* Profile card: center everything and scale image */
+  .profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .profile-container img.profile-photo {
+    width: 160px !important;
+    height: 180px !important;
+    border-radius: 9999px !important; /* perfectly round */
+    object-fit: cover;
+  }
+
+  /* Buttons: easier taps on mobile */
+  .row a.cta, .row a.ghost, .hero-actions .cta, .hero-actions .ghost {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Section grids go single column */
+  .grid { grid-template-columns: 1fr !important; }
+  .card { grid-column: 1 / -1 !important; }
+
+  /* Header nav: avoid layout push */
+  header .nav { flex-wrap: nowrap; }
+}
+
+/* Slightly smaller phones */
+@media (max-width: 380px) {
+  h1 { font-size: 26px; line-height: 1.2; }
+  .subtitle { font-size: 14px; }
+  .fact { font-size: 13px; }
+}
+
     * { box-sizing: border-box }
     html, body { height: 100% }
     body {
@@ -74,58 +205,95 @@
         box-shadow: var(--shadow);
         margin-bottom: 16px;
         }
-    .nav a { padding: 8px 12px; border-radius: 10px }
-    .nav a:hover { background: color-mix(in oklab, var(--brand) 14%, transparent) }
-    .cta {
-      background: linear-gradient(135deg, var(--brand), var(--accent));
-      color: white; padding: 10px 14px; border-radius: 12px; font-weight: 700; border: none; cursor: pointer;
-      box-shadow: var(--shadow);
-    }
-    .ghost { border: 1px solid var(--border); background: transparent; color: var(--text); padding: 10px 14px; border-radius: 12px; font-weight: 600; cursor: pointer }
-    .toggle { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border); padding: 8px 10px; border-radius: 10px; cursor: pointer }
-    main { padding: 28px 0 80px }
 
-    /* Hero */
-    .hero { display: grid; grid-template-columns: 1.2fr .8fr; gap: 32px; align-items: center; padding: 36px 0 }
-    .hero-card {
-      background: linear-gradient(180deg, color-mix(in oklab, var(--card) 92%, transparent), var(--card));
-      border: 1px solid var(--border); border-radius: 20px; padding: 24px; box-shadow: var(--shadow);
-    }
-    .eyebrow { color: var(--muted); font-weight: 600; letter-spacing: .2em; text-transform: uppercase; font-size: 12px }
-    h1 { font-size: clamp(28px, 5vw, 46px); line-height: 1.1; margin: 8px 0 12px }
-    .subtitle { font-size: clamp(14px, 2vw, 18px); color: var(--muted) }
-    .hero-actions { display: flex; gap: 12px; margin-top: 18px; flex-wrap: wrap }
-    .quick-facts { display: grid; gap: 10px; margin-top: 18px; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) }
-    .fact { border: 1px solid var(--border); background: var(--chip); padding: 10px 12px; border-radius: 12px; font-size: 14px; color: var(--muted) }
+        #navMenu {
+          transition: all 0.3s ease-in-out;
+          opacity: 0;
+          transform: translateY(-10px);
+          pointer-events: none;
+        }
 
-    /* Section */
-    section { margin-top: 54px }
-    .section-title { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 18px }
-    .section-title h2 { font-size: 24px; margin: 0 }
-    .section-title p { color: var(--muted); font-size: 14px }
+        #navMenu.active {
+          opacity: 1;
+          transform: translateY(0);
+          pointer-events: auto;
+        }
 
-    /* Cards grid */
-    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px }
-    .card { grid-column: span 12; background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 16px; box-shadow: var(--shadow) }
-    @media (min-width: 720px) { .card.s6 { grid-column: span 6 } .card.s4 { grid-column: span 4 } .card.s8 { grid-column: span 8 } }
+        /* Ensure the menu is always visible on wider screens */
+        @media (min-width: 769px) {
+          #navMenu {
+            display: flex !important;
+            flex-direction: row;
+            align-items: center;
+            gap: 16px;
+            margin-top: 0;
+            background: transparent;
+            border: none;
+            padding: 0;
+            box-shadow: none;
+            opacity: 1;
+            transform: none;
+            pointer-events: auto;
+          }
 
-    /* Chips */
-    .chips { display: flex; flex-wrap: wrap; gap: 8px }
-    .chip { background: var(--chip); border: 1px solid var(--border); padding: 6px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; color: var(--muted) }
+          /* Hide hamburger icon on large screens */
+          .menu-toggle {
+            display: none !important;
+          }
+        }
 
-    /* Timeline */
-    .timeline { position: relative; padding-left: 22px }
-    .timeline:before { content: ""; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--border) }
-    .tl-item { position: relative; margin: 14px 0; padding-left: 8px }
-    .tl-item:before { content: ""; position: absolute; left: -6px; top: 8px; width: 12px; height: 12px; background: linear-gradient(135deg, var(--brand), var(--accent)); border-radius: 50%; box-shadow: 0 0 0 4px color-mix(in oklab, var(--brand) 12%, transparent) }
+            .nav a { padding: 8px 12px; border-radius: 10px }
+            .nav a:hover { background: color-mix(in oklab, var(--brand) 14%, transparent) }
+            .cta {
+              background: linear-gradient(135deg, var(--brand), var(--accent));
+              color: white; padding: 10px 14px; border-radius: 12px; font-weight: 700; border: none; cursor: pointer;
+              box-shadow: var(--shadow);
+            }
+            .ghost { border: 1px solid var(--border); background: transparent; color: var(--text); padding: 10px 14px; border-radius: 12px; font-weight: 600; cursor: pointer }
+            .toggle { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border); padding: 8px 10px; border-radius: 10px; cursor: pointer }
+            main { padding: 28px 0 80px }
 
-    /* Footer */
-    footer { margin-top: 60px; padding: 22px 0; border-top: 1px solid var(--border); color: var(--muted) }
+            /* Hero */
+            .hero { display: grid; grid-template-columns: 1.2fr .8fr; gap: 32px; align-items: center; padding: 36px 0 }
+            .hero-card {
+              background: linear-gradient(180deg, color-mix(in oklab, var(--card) 92%, transparent), var(--card));
+              border: 1px solid var(--border); border-radius: 20px; padding: 24px; box-shadow: var(--shadow);
+            }
+            .eyebrow { color: var(--muted); font-weight: 600; letter-spacing: .2em; text-transform: uppercase; font-size: 12px }
+            h1 { font-size: clamp(28px, 5vw, 46px); line-height: 1.1; margin: 8px 0 12px }
+            .subtitle { font-size: clamp(14px, 2vw, 18px); color: var(--muted) }
+            .hero-actions { display: flex; gap: 12px; margin-top: 18px; flex-wrap: wrap }
+            .quick-facts { display: grid; gap: 10px; margin-top: 18px; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) }
+            .fact { border: 1px solid var(--border); background: var(--chip); padding: 10px 12px; border-radius: 12px; font-size: 14px; color: var(--muted) }
 
-    /* Utilities */
-    .row { display: flex; gap: 10px; flex-wrap: wrap }
-    .muted { color: var(--muted) }
-    .kbd { padding: 4px 8px; border: 1px solid var(--border); background: var(--chip); border-radius: 8px; font-weight: 700; font-size: 12px }
+            /* Section */
+            section { margin-top: 54px }
+            .section-title { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 18px }
+            .section-title h2 { font-size: 24px; margin: 0 }
+            .section-title p { color: var(--muted); font-size: 14px }
+
+            /* Cards grid */
+            .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px }
+            .card { grid-column: span 12; background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 16px; box-shadow: var(--shadow) }
+            @media (min-width: 720px) { .card.s6 { grid-column: span 6 } .card.s4 { grid-column: span 4 } .card.s8 { grid-column: span 8 } }
+
+            /* Chips */
+            .chips { display: flex; flex-wrap: wrap; gap: 8px }
+            .chip { background: var(--chip); border: 1px solid var(--border); padding: 6px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; color: var(--muted) }
+
+            /* Timeline */
+            .timeline { position: relative; padding-left: 22px }
+            .timeline:before { content: ""; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--border) }
+            .tl-item { position: relative; margin: 14px 0; padding-left: 8px }
+            .tl-item:before { content: ""; position: absolute; left: -6px; top: 8px; width: 12px; height: 12px; background: linear-gradient(135deg, var(--brand), var(--accent)); border-radius: 50%; box-shadow: 0 0 0 4px color-mix(in oklab, var(--brand) 12%, transparent) }
+
+            /* Footer */
+            footer { margin-top: 60px; padding: 22px 0; border-top: 1px solid var(--border); color: var(--muted) }
+
+            /* Utilities */
+            .row { display: flex; gap: 10px; flex-wrap: wrap }
+            .muted { color: var(--muted) }
+            .kbd { padding: 4px 8px; border: 1px solid var(--border); background: var(--chip); border-radius: 8px; font-weight: 700; font-size: 12px }
   </style>
   <script>
     // Theme persistence
@@ -146,10 +314,16 @@
   <header>
     <div class="container nav">
       <div class="brand">
-        <div class="logo">SS</div>
-        <div>Shivam Sharma <span class="muted" style="font-weight:600">(He/Him)</span></div>
+        <div class="logo">ss</div>
+        <div>Shivam Sharma <span class="muted" style="font-weight:600">(Shiv)</span></div>
       </div>
-      <nav class="row" aria-label="Primary">
+
+      <!-- Hamburger button -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="row" id="navMenu" aria-label="Primary">
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#certs">Certifications</a>
@@ -157,12 +331,16 @@
         <a href="#contact">Contact</a>
         <button class="toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle light/dark">
           <span>Dark Mode</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3A7 7 0 0 0 21 12.79z"/>
+          </svg>
         </button>
         <a class="cta" href="#contact">Hire Me</a>
       </nav>
     </div>
   </header>
+
 
   <main class="container">
     <!-- HERO -->
@@ -253,11 +431,9 @@
           <h3 style="margin:0 0 8px">Programming & Tools</h3>
           <div class="chips">
             <span class="chip">Python</span>
-            <span class="chip">C</span>
-            <span class="chip">C++</span>
-            <span class="chip">Java</span>
             <span class="chip">JavaScript</span>
             <span class="chip">Flask</span>
+            <span class="chip">RESTAPI</span>
             <span class="chip">MySQL</span>
             <span class="chip">Git</span>
             <span class="chip">GitHub</span>
@@ -373,50 +549,61 @@
       </div>
     </section>
 
-    <!-- PROJECTS (sample placeholders) -->
-    <section id="projects">
+    <section id="certs">
       <div class="section-title">
-        <h2>Projects</h2>
-        <p>Hands‑on blue‑team and app builds</p>
+        <h2>Badges</h2>
+        <!-- <p>Fortinet and foundational badges</p> -->
       </div>
       <div class="grid">
         <article class="card s6">
-          <h3 style="margin:0">Mini SOC Lab (Home)</h3>
-          <p class="muted">Spun up a home lab with Linux (Kali), a SIEM trial, and test logs to practice alert triage, correlation, and incident notes.</p>
-          <div class="chips">
-            <span class="chip">Linux</span>
-            <span class="chip">SIEM</span>
-            <span class="chip">Syslog</span>
-            <span class="chip">Detection Rules</span>
-          </div>
+          <!-- <h3 style="margin:0">Fortinet Certified Associate (FCA) — Cybersecurity</h3> -->
+          <h3 style="margin-top:16px">TryHackMe Badges</h3>
+          <iframe 
+            src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=5698008" 
+            style="border:none; width:100%; height:200px;">
+          </iframe>
         </article>
+    </section>
+
+        <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-title">
+        <h2>Projects</h2>
+        <p>Hands-on security, AI, and application development</p>
+      </div>
+
+      <div class="grid">
+
+        <!-- Temporal Clustering -->
         <article class="card s6">
-          <h3 style="margin:0">Flask Auth Demo</h3>
-          <p class="muted">Simple Flask app with user authentication, role‑based access, and audit logging. Built with MySQL and GitHub CI.</p>
+          <h3 style="margin:0">Temporal Clustering of Cybersecurity Incidents</h3>
+
+          <!-- GITHUB HOSTED SCREENSHOT -->
+          <img 
+            src="https://raw.githubusercontent.com/Shivam-Sh-9027/Temperal_clustering_of_cyber_security_incidents/main/Screenshot_2025-12-03_00_50_08.png" 
+            alt="Temporal Clustering Dashboard Screenshot"
+            style="width:100%; border-radius:12px; margin:12px 0; border:1px solid var(--border); box-shadow:var(--shadow);"
+          />
+
+          <p class="muted">
+            A data-driven project that clusters cyber attacks based on time to identify high-risk intervals. 
+            Includes Flask backend, visualization dashboard, K-Means clustering, and predictive analysis.
+          </p>
+
           <div class="chips">
-            <span class="chip">Flask</span>
-            <span class="chip">MySQL</span>
-            <span class="chip">Auth</span>
-            <span class="chip">Audit Logs</span>
-          </div>
-        </article>
-        <article class="card s6">
-          <h3 style="margin:0">OpenCV Attendance</h3>
-          <p class="muted">Facial recognition attendance prototype with real‑time rendering and basic anti‑spoofing checks.</p>
-          <div class="chips">
-            <span class="chip">OpenCV</span>
             <span class="chip">Python</span>
-            <span class="chip">Real‑time</span>
+            <span class="chip">Flask</span>
+            <span class="chip">Machine Learning</span>
+            <span class="chip">K-Means</span>
+            <span class="chip">Cybersecurity</span>
           </div>
-        </article>
-        <article class="card s6">
-          <h3 style="margin:0">Socket.io Chat</h3>
-          <p class="muted">WebSocket based chat with basic moderation and message retention policy to explore security controls.</p>
-          <div class="chips">
-            <span class="chip">JavaScript</span>
-            <span class="chip">Socket.io</span>
-            <span class="chip">Security</span>
-          </div>
+
+          <a class="cta" 
+            href="https://github.com/Shivam-Sh-9027/Temperal_clustering_of_cyber_security_incidents"
+            target="_blank" 
+            style="margin-top:10px; display:inline-block;">
+            GitHub Repo
+          </a>
         </article>
       </div>
     </section>
@@ -468,6 +655,13 @@
       setTheme(light ? 'dark' : 'light');
       document.getElementById('themeToggle').firstElementChild.textContent = light ? 'Dark Mode' : 'Light Mode';
     });
+
+  
+    // Mobile menu toggle
+    document.getElementById('menuToggle').addEventListener('click', () => {
+      document.getElementById('navMenu').classList.toggle('active');
+    });
+
 
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
